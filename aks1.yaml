@@ -14,16 +14,16 @@ identity:
 cluster:
 
   ## The resource group for the AKS cluster object
-  resourceGroupName: aksclustersnew
+  resourceGroupName: capz2rg
 
   ## The resource group name for the nodes
-  nodeResourceGroupName: capz1nodes
+  nodeResourceGroupName: capz2nodes
 
   ## The location of the cluster
   location: eastus
 
   ## The name of the cluster
-  name: capz1new
+  name: capz2
 
   ## the subnet 
   cidrBlocks:
