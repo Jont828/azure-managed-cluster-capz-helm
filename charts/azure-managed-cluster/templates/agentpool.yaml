@@ -6,44 +6,44 @@ metadata:
 spec:
   name: {{ $agentpoolsname }}
   scaling:
-    minSize: {{ $agentpools.scaling.minSize }}
-    maxSize: {{ $agentpools.scaling.maxSize }}
+    minSize: {{ $agentpool.scaling.minSize }}
+    maxSize: {{ $agentpool.scaling.maxSize }}
   additionalTags:  
-    {{- range $additionalTags := $agentpools.additionalTags }}
+    {{- range $additionalTags := $agentpool.additionalTags }}
     {{ $additionalTags.key }}: {{ $additionalTags.value }}
     {{- end }}
-  osDiskSizeGB: {{ $agentpools.osDiskSizeGB }}
-  sku: {{ $agentpools.sku }}
+  osDiskSizeGB: {{ $agentpool.osDiskSizeGB }}
+  sku: {{ $agentpool.sku }}
   availabilityZones:
-      {{- range $agentpools.availabilityZones }}
+      {{- range $agentpool.availabilityZones }}
       - {{ .  | quote }}
       {{- end }}    
   nodeLabels: 
-   {{- range $nodeLabels := $agentpools.nodeLabels }}
+   {{- range $nodeLabels := $agentpool.nodeLabels }}
     {{ $nodeLabels.key }}: {{ $nodeLabels.value }}
    {{- end }}
   taints: 
-   {{- range $taints := $agentpools.taints }}
+   {{- range $taints := $agentpool.taints }}
     - key: {{ $taints.key }}
       value: {{ $taints.value }}
       effect: {{ $taints.effect }}
    {{- end }}
-  mode: {{ $agentpools.mode }}
-  maxPods: {{ $agentpools.maxPods }}
-  osDiskType : {{ $agentpools.osDiskType }}
-  enableUltraSSD : {{ $agentpools.enableUltraSSD }}
-  osType : {{ $agentpools.osType }}
-  enableNodePublicIP : {{ $agentpools.enableNodePublicIP }}
-  nodePublicIPPrefixID : {{ $agentpools.nodePublicIPPrefixID }}
-  scaleSetPriority : {{ $agentpools.scaleSetPriority }}
-  scaleDownMode : {{ $agentpools.scaleDownMode }}
-  spotMaxPrice : {{ $agentpools.spotMaxPrice }}
-  kubeletConfig : {{ $agentpools.kubeletConfig }}
-  kubeletDiskType : {{ $agentpools.kubeletDiskType }}
-  linuxOSConfig : {{ $agentpools.linuxOSConfig }}
-  subnetName : {{ $agentpools.subnetName }}
-  enableFIPS : {{ $agentpools.enableFIPS }}
-  enableEncryptionAtHost : {{ $agentpools.enableEncryptionAtHost }}
+  mode: {{ $agentpool.mode }}
+  maxPods: {{ $agentpool.maxPods }}
+  osDiskType : {{ $agentpool.osDiskType }}
+  enableUltraSSD : {{ $agentpool.enableUltraSSD }}
+  osType : {{ $agentpool.osType }}
+  enableNodePublicIP : {{ $agentpool.enableNodePublicIP }}
+  nodePublicIPPrefixID : {{ $agentpool.nodePublicIPPrefixID }}
+  scaleSetPriority : {{ $agentpool.scaleSetPriority }}
+  scaleDownMode : {{ $agentpool.scaleDownMode }}
+  spotMaxPrice : {{ $agentpool.spotMaxPrice }}
+  kubeletConfig : {{ $agentpool.kubeletConfig }}
+  kubeletDiskType : {{ $agentpool.kubeletDiskType }}
+  linuxOSConfig : {{ $agentpool.linuxOSConfig }}
+  subnetName : {{ $agentpool.subnetName }}
+  enableFIPS : {{ $agentpool.enableFIPS }}
+  enableEncryptionAtHost : {{ $agentpool.enableEncryptionAtHost }}
 
   
 ---
@@ -53,7 +53,7 @@ metadata:
   name: {{ $agentpoolsname }}
 spec:
   clusterName: {{ $.Values.cluster.name }}
-  replicas: {{ $agentpools.nodecount }}
+  replicas: {{ $agentpool.nodecount }}
   template:
     metadata: {}
     spec:
