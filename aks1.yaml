@@ -44,14 +44,14 @@ controlplane:
   networkPluginMode: null
 
 #Only 1 Nodepool of mode System is allowed  
-agentpools:
-  agentpool0:
-    mode: System
-    sku: Standard_B2s
-    nodecount: 1
-    osDiskSizeGB: 100
-  agentpool1:
-    mode: User
-    nodecount: 1
-    sku: Standard_B2s
-    osDiskSizeGB: 100
+# agentpools:
+#   agentpool0:
+#     mode: System
+#     sku: Standard_B2s
+#     nodecount: 1
+#     osDiskSizeGB: 100
+#   agentpool1:
+#     mode: User
+#     nodecount: 1
+#     sku: Standard_B2s
+#     osDiskSizeGB: 100
