@@ -14,16 +14,16 @@ identity:
 cluster:
 
   ## The resource group for the AKS cluster object
-  resourceGroupName: capz2rg
+  resourceGroupName: capz1rg
 
   ## The resource group name for the nodes
-  nodeResourceGroupName: capz2nodes
+  nodeResourceGroupName: capz1nodes
 
   ## The location of the cluster
   location: eastus
 
   ## The name of the cluster
-  name: capz2
+  name: capz1
 
   ## the subnet 
   cidrBlocks:
@@ -45,12 +45,12 @@ controlplane:
 
 #Only 1 Nodepool of mode System is allowed  
 agentpools:
-  capz1np0:
+  agentpool0:
     mode: System
     sku: Standard_B2s
     nodecount: 1
     osDiskSizeGB: 100
-  capz1np1:
+  agentpool1:
     mode: User
     nodecount: 1
     sku: Standard_B2s
