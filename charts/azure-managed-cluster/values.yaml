@@ -12,6 +12,7 @@ identity:
   clusterIdentityName: cluster-identity
   clusterIdentitySecretName: cluster-identity-secret
   clusterIdentitySecretNamespace: default
+  clusterIdentitySecretValueB64: ''
   resourceID: ""
   type: UserAssignedMSI
 
