@@ -9,10 +9,10 @@ cluster:
   name: capz
   
   ## The resource group for the AKS cluster object
-  resourceGroupName: "{{ tpl .Values.cluster.name . }}-rg"
+  resourceGroupName: "{{ tpl .Values.cluster.name . }}rg"
 
   ## The resource group name for the nodes
-  nodeResourceGroupName: 
+  nodeResourceGroupName: "{{ tpl .Values.cluster.name . }}nodes"
 
   ## The location of the cluster
   location: eastus
