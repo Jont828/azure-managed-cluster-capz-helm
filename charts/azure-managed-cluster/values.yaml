@@ -4,6 +4,27 @@
 
 ## AKS cluster configuration
 
+cluster:
+  ## The name of the cluster
+  name: capz
+  
+  ## The resource group for the AKS cluster object
+  resourceGroupName: "{{ tpl .Values.cluster.name . }}-rg"
+
+  ## The resource group name for the nodes
+  nodeResourceGroupName: 
+
+  ## The location of the cluster
+  location: eastus
+
+  ## the subnet 
+  cidrBlocks:
+  - 192.168.0.0/16
+
+  ## The sku of the control plane
+  sku: Standard
+
+
 ## The subscription ID
 subscriptionID: ''
 identity:
@@ -14,28 +35,7 @@ identity:
   clusterIdentitySecretNamespace: default
   clusterIdentitySecretValueB64: ''
   resourceID: ""
-  type: UserAssignedMSI
-
-cluster:
-  ## The resource group for the AKS cluster object
-  resourceGroupName: aksclusters
-
-  ## The resource group name for the nodes
-  nodeResourceGroupName: base
-
-  ## The location of the cluster
-  location: eastus
-
-  ## The name of the cluster
-  name: aks-cluster-api
-
-  ## the subnet 
-  cidrBlocks:
-  - 192.168.0.0/16
-
-  ## The sku of the control plane
-  sku: Standard
-
+  type: ServicePrincipal
 
 controlplane:
 
@@ -107,70 +107,42 @@ controlplane:
   virtualNetwork: {}
   disableLocalAccounts: false
 #Only 1 Nodepool of mode System is allowed  
-agentpools: 
-  agentpool0:
-    mode: System
-    sku: Standard_D4d_v5
-    nodecount: 5
-    osDiskSizeGB: 100
-    additionalTags:
-     - key: test
-       value: test
-   #  availabilityZones: 
-   #   - "1"
-   #   - "2"
-   #   - "3"
+
+agentPools: []
+
+defaults: 
+  agentPool:
+    mode: User # TODO: should this be set or required?
+    sku: Standard_DS4_v2
+    # sku: Standard_D4d_v5
+    nodecount: 1
+    osDiskSizeGB: 32
+    # additionalTags:
+    #  - key: test
+    #    value: test
+    availabilityZones: 
+     - "1"
+     - "2"
+     - "3"
     nodeLabels:
      - key: test
        value: test 
-    taints: {}
+    # taints: {}
     scaling:
       minSize: 1
       maxSize: 5
     maxPods: 110
-    osDiskType : "Ephemeral"
-    enableUltraSSD : false
-    osType : "Linux"
-    enableNodePublicIP : false
-    nodePublicIPPrefixID : ""
-    scaleSetPriority : "Regular"
-    scaleDownMode : "Delete"
-    spotMaxPrice : ""
-    kubeletConfig : ""
-    kubeletDiskType : "OS"
-    linuxOSConfig : "" 
-    subnetName : ""
-    enableFIPS : false
-    enableEncryptionAtHost : false 
-  agentpool1:
-    mode: User
-    sku: Standard_D4d_v5
-    nodecount: 5
-    osDiskSizeGB: 100
-    additionalTags:
-     - key: test
-       value: test
-   #  availabilityZones: 
-   #   - "1"
-   #   - "2"
-   #   - "3"
-    nodeLabels:
-     - key: test
-       value: test 
-    taints: {}
-    scaling:
-      minSize: 1
-      maxSize: 5
-    maxPods: 110
-    osDiskType : "Ephemeral"
-    enableUltraSSD : false
-    osType : "Linux"
-    enableNodePublicIP : false
-    nodePublicIPPrefixID : ""
-    scaleSetPriority : "Regular"
-    scaleDownMode : "Delete"
-    spotMaxPrice : ""
-    kubeletConfig : ""
-    kubeletDiskType : "OS"
-    linuxOSConfig : "" 
-    subnetName : ""    
+    osDiskType: "Ephemeral"
+    enableUltraSSD: false
+    osType: "Linux"
+    enableNodePublicIP: false
+    nodePublicIPPrefixID: ""
+    scaleSetPriority: "Regular"
+    scaleDownMode: "Delete"
+    spotMaxPrice: ""
+    kubeletConfig: ""
+    kubeletDiskType: "OS"
+    linuxOSConfig: "" 
+    subnetName: ""
+    enableFIPS: false
+    enableEncryptionAtHost: false
