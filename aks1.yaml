@@ -7,8 +7,11 @@
 ## The subscription ID
 subscriptionID: '<AZURE_SUBSCRIPTION_ID>'
 identity:
+  clusterIdentityName: capz1-identity
+  clusterIdentitySecretName: capz1-identity-secret
   clientID: '<AZURE_CLIENT_ID>'
   tenantID: '<AZURE_TENANT_ID>'
+  clusterIdentitySecretValueB64: '<AZURE_CLIENT_SECRET_B64>'
   type: ServicePrincipal
 cluster:
 
@@ -43,14 +46,14 @@ controlplane:
   networkPluginMode: null
 
 #Only 1 Nodepool of mode System is allowed  
-agentpools:
-  agentpool0:
-    mode: System
-    sku: Standard_DS4_v2
-    nodecount: 1
-    osDiskSizeGB: 32
-  agentpool1:
-    mode: User
-    nodecount: 1
-    sku: Standard_DS4_v2
-    osDiskSizeGB: 32
+agentPools:
+- name: capz1pool0
+  mode: System
+  sku: Standard_DS4_v2
+  nodecount: 1
+  osDiskSizeGB: 32
+- name: capz1pool1
+  mode: User
+  nodecount: 1
+  sku: Standard_DS4_v2
+  osDiskSizeGB: 32
